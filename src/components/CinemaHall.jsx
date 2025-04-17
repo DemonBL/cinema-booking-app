@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { getBookedSeats } from '../services/BookingService';
 import './CinemaHall.css';
 
-const CinemaHall = () => {
+const CinemaHall = ({ setSelectedSeats }) => {
   const { id } = useParams();
   const rows = 5;
   const seatsPerRow = 8;
-  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [localSelectedSeats, setLocalSelectedSeats] = useState([]);
   const [bookedSeats, setBookedSeats] = useState([]);
 
   useEffect(() => {
@@ -17,11 +17,14 @@ const CinemaHall = () => {
   const toggleSeat = (row, seat) => {
     const seatId = `${row}-${seat}`;
     if (bookedSeats.includes(seatId)) return;
-    if (selectedSeats.includes(seatId)) {
-      setSelectedSeats(selectedSeats.filter((id) => id !== seatId));
+    let updatedSeats;
+    if (localSelectedSeats.includes(seatId)) {
+      updatedSeats = localSelectedSeats.filter((id) => id !== seatId);
     } else {
-      setSelectedSeats([...selectedSeats, seatId]);
+      updatedSeats = [...localSelectedSeats, seatId];
     }
+    setLocalSelectedSeats(updatedSeats);
+    setSelectedSeats(updatedSeats);
   };
 
   return (
@@ -32,7 +35,7 @@ const CinemaHall = () => {
           <div key={row} className="row">
             {[...Array(seatsPerRow)].map((_, seat) => {
               const seatId = `${row}-${seat}`;
-              const isSelected = selectedSeats.includes(seatId);
+              const isSelected = localSelectedSeats.includes(seatId);
               const isBooked = bookedSeats.includes(seatId);
               return (
                 <div
@@ -47,7 +50,7 @@ const CinemaHall = () => {
           </div>
         ))}
       </div>
-      <p>Вибрані місця: {selectedSeats.join(', ')}</p>
+      <p>Вибрані місця: {localSelectedSeats.join(', ')}</p>
     </div>
   );
 };
