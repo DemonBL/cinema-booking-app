@@ -1,47 +1,56 @@
 .cinema-hall {
-    text-align: center;
-    padding: 16px;
-  }
-  
-  .seats {
-    display: inline-block;
-  }
-  
-  .row {
-    display: flex;
-    margin-bottom: 8px;
-  }
-  
-  .seat {
-    width: 40px;
-    height: 40px;
-    margin: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .seat.available {
-    background-color: #28a745;
-  }
-  
-  .seat.selected {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  @media (max-width: 600px) {
-    .seat {
-      width: 30px;
-      height: 30px;
-      font-size: 12px;
-    }
-  }
+  text-align: center;
+  padding: 16px;
+  background: linear-gradient(135deg, #dfe9f3, #ffffff); /* Світло-сірий градієнт */
+  border-radius: 8px;
+  color: #333; /* Темний текст */
+}
 
-  .seat.booked {
-    background-color: #dc3545;
-    cursor: not-allowed;
+.seats {
+  display: inline-block;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 8px;
+  justify-content: center;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  margin: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.seat.available {
+  background-color: #28a745; /* Зелений для вільних */
+}
+
+.seat.selected {
+  background-color: #007bff; /* Синій для вибраних */
+  color: white;
+}
+
+.seat.booked {
+  background-color: #dc3545; /* Червоний для заброньованих */
+  cursor: not-allowed;
+}
+
+.seat:hover:not(.booked) {
+  transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+  .seat {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
   }
+}

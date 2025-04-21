@@ -1,21 +1,22 @@
 .movie-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px;
+  margin: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #f3e7ff, #e6f0fa); /* Ніжний світлий градієнт */
+}
+
+@media (max-width: 600px) {
+  .movie-list {
+    grid-template-columns: 1fr;
   }
-  
-  .search-input {
-    width: 100%;
-    max-width: 400px;
-    padding: 8px;
-    margin: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  @media (max-width: 600px) {
-    .movie-list {
-      grid-template-columns: 1fr;
-    }
-  }
+}

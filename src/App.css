@@ -40,8 +40,13 @@
 .app {
   text-align: center;
   padding: 16px;
+  background: linear-gradient(135deg, #f4c4f3, #fcff9e); /* Рожево-золотий градієнт */
+  min-height: 100vh;
+  color: #333;
 }
 
 h1 {
   margin-bottom: 24px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }

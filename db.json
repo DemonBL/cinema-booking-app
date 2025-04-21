@@ -5,7 +5,7 @@
         "title": "The Matrix",
         "description": "A hacker discovers a mysterious truth.",
         "genre": "Sci-Fi",
-        "poster": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
+        "poster": "/images/matrix.jpg",
         "showtime": "2025-04-20 18:00"
       },
       {
@@ -13,7 +13,7 @@
         "title": "Inception",
         "description": "A thief enters dreams to steal secrets.",
         "genre": "Thriller",
-        "poster": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
+        "poster": "/images/inception.jpg",
         "showtime": "2025-04-20 20:00"
       },
       {
@@ -21,7 +21,7 @@
         "title": "The Hangover",
         "description": "A wild bachelor party in Las Vegas goes terribly wrong.",
         "genre": "Comedy",
-        "poster": "https://m.media-amazon.com/images/M/MV5BNGQwZjg5YmYtY2VkNC00NzliLTljYTctNzI5NmU3MjE2ODI5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
+        "poster": "/images/hangover.jpg",
         "showtime": "2025-04-20 17:00"
       },
       {
@@ -29,7 +29,7 @@
         "title": "The Conjuring",
         "description": "Paranormal investigators face a terrifying haunting.",
         "genre": "Horror",
-        "poster": "https://m.media-amazon.com/images/M/MV5BMTM3NjA1NDMyMV5BMl5BanBnXkFtZTcwMDMyNDc0OA@@._V1_.jpg",
+        "poster": "/images/conjuring.jpg",
         "showtime": "2025-04-20 22:00"
       },
       {
@@ -37,7 +37,7 @@
         "title": "Mad Max: Fury Road",
         "description": "A high-octane chase through a post-apocalyptic wasteland.",
         "genre": "Action",
-        "poster": "https://m.media-amazon.com/images/M/MV5BN2EwM2I5OWMtMGQyMi00Zjg1LWJkNTctZTdjYTA4OGUwMmRkXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+        "poster": "/images/madmax.jpg",
         "showtime": "2025-04-20 19:00"
       },
       {
@@ -45,7 +45,7 @@
         "title": "The Notebook",
         "description": "A passionate love story that spans decades.",
         "genre": "Romance",
-        "poster": "https://m.media-amazon.com/images/M/MV5BNzk2M2YxNzE5NF5BMl5BanBnXkFtZTcwMjk2NTM0MQ@@._V1_.jpg",
+        "poster": "/images/notebook.jpg",
         "showtime": "2025-04-20 15:00"
       },
       {
@@ -53,7 +53,7 @@
         "title": "The Lord of the Rings: The Fellowship of the Ring",
         "description": "A hobbit embarks on a quest to destroy a powerful ring.",
         "genre": "Fantasy",
-        "poster": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_.jpg",
+        "poster": "/images/lotr.jpg",
         "showtime": "2025-04-20 16:00"
       }
     ]
