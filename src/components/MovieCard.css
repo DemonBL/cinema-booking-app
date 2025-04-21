@@ -8,6 +8,7 @@
   transition: transform 0.2s;
   background: linear-gradient(135deg, #e0c3fc, #8ec5fc); /* Світлий градієнт */
   color: #333; /* Темний текст для контрасту */
+  animation: slideIn 0.5s ease-in-out;
 }
 
 .movie-card:hover {
@@ -45,5 +46,16 @@
 @media (max-width: 400px) {
   .movie-card {
     padding: 8px;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
