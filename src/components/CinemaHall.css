@@ -1,19 +1,36 @@
 .cinema-hall {
   text-align: center;
   padding: 16px;
-  background: linear-gradient(135deg, #dfe9f3, #ffffff); /* Світло-сірий градієнт */
+  background: linear-gradient(135deg, #dfe9f3, #ffffff);
   border-radius: 8px;
-  color: #333; /* Темний текст */
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .seats {
   display: inline-block;
+  white-space: nowrap;
+  padding: 8px;
+  width: 100%; /* Забезпечуємо, що контейнер займає всю ширину */
+}
+
+/* Додаємо масштабування для малих екранів */
+@media (max-width: 600px) {
+  .seats {
+    display: flex; /* Використовуємо flex для кращого контролю */
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0.75); /* Зменшуємо масштаб на 25% */
+    transform-origin: top center; /* Масштабування від верхнього центру */
+    white-space: normal; /* Дозволяємо переносити ряди */
+  }
 }
 
 .row {
   display: flex;
   margin-bottom: 8px;
-  justify-content: center; /* Центруємо ряд */
+  justify-content: center;
 }
 
 .seat {
@@ -27,19 +44,20 @@
   border-radius: 4px;
   cursor: pointer;
   transition: transform 0.2s;
+  flex-shrink: 0;
 }
 
 .seat.available {
-  background-color: #28a745; /* Зелений для вільних */
+  background-color: #28a745;
 }
 
 .seat.selected {
-  background-color: #007bff; /* Синій для вибраних */
+  background-color: #007bff;
   color: white;
 }
 
 .seat.booked {
-  background-color: #dc3545; /* Червоний для заброньованих */
+  background-color: #dc3545;
   cursor: not-allowed;
 }
 
@@ -52,5 +70,27 @@
     width: 30px;
     height: 30px;
     font-size: 12px;
+    margin: 2px;
+  }
+
+  .row {
+    margin-bottom: 4px;
+  }
+}
+
+@media (max-width: 400px) {
+  .seat {
+    width: 20px; /* Ще більше зменшуємо розмір */
+    height: 20px;
+    font-size: 10px;
+    margin: 1px; /* Зменшуємо відступи */
+  }
+
+  .cinema-hall h2 {
+    font-size: 1.2em;
+  }
+
+  .cinema-hall p {
+    font-size: 0.9em;
   }
 }

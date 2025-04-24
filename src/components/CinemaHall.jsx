@@ -5,7 +5,7 @@ import './CinemaHall.css';
 
 const CinemaHall = ({ setSelectedSeats }) => {
   const { id } = useParams();
-  const rows = 7; // Збільшуємо до 7 рядів
+  const rows = 7; // 7 рядів
   const seatsPerRow = 10; // 10 місць у кожному ряді, крім останнього
   const lastRowSeats = seatsPerRow + 4; // Останній ряд має 14 місць
   const [localSelectedSeats, setLocalSelectedSeats] = useState([]);

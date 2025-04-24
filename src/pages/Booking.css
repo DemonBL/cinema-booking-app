@@ -9,10 +9,12 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, #f5f7fa, #dfe9f3); /* Світлий градієнт */
+  background: linear-gradient(135deg, #f5f7fa, #dfe9f3);
   padding: 16px;
   border-radius: 8px;
   color: #333;
+  width: 100%; /* Забезпечуємо, що форма займає всю ширину */
+  box-sizing: border-box;
 }
 
 .booking-form input {
@@ -25,7 +27,7 @@
 }
 
 .booking-form button {
-  background: linear-gradient(135deg, #8e2de2, #4a00e0); /* Фіолетовий градієнт (залишаємо) */
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
   color: white;
   border: none;
   padding: 8px 16px;
@@ -39,6 +41,10 @@
 
 @media (max-width: 600px) {
   .booking-form input {
-    max-width: 100%;
+    max-width: 100%; /* Поле вводу займає всю ширину */
+  }
+
+  .booking-form {
+    padding: 8px; /* Зменшуємо відступи */
   }
 }
