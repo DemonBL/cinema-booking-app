@@ -6,11 +6,9 @@
   width: 200px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
-  background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
-  color: #333;
-  display: flex; /* Використовуємо Flexbox для вирівнювання */
-  flex-direction: column; /* Вирівнюємо елементи вертикально */
-  height: 450px; /* Фіксована висота картки */
+  background: linear-gradient(135deg, #e0c3fc, #8ec5fc); /* Світлий градієнт */
+  color: #333; /* Темний текст для контрасту */
+  animation: slideIn 0.5s ease-in-out;
 }
 
 .movie-card:hover {
@@ -24,46 +22,14 @@
   object-fit: cover;
 }
 
-.movie-card-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1; /* Займає весь доступний простір */
-  justify-content: space-between; /* Розподіляємо простір між елементами */
-}
-
-.movie-card h3 {
-  margin: 8px 0;
-  font-size: 1.2em;
-}
-
-.description {
-  margin: 8px 0;
-  height: 60px; /* Фіксована висота опису */
-  overflow: hidden; /* Ховаємо текст, що не вміщується */
-  text-overflow: ellipsis; /* Додаємо три крапки для обрізаного тексту */
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* Обмежуємо на 3 рядки */
-  -webkit-box-orient: vertical;
-}
-
-.meta-info {
-  margin: 8px 0;
-}
-
-.meta-info p {
-  margin: 4px 0;
-}
-
 .movie-card button {
-  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  background: linear-gradient(135deg, #8e2de2, #4a00e0); /* Фіолетовий градієнт (залишаємо) */
   color: white;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
   transition: background 0.2s;
-  margin-top: auto; /* Розташовуємо кнопку внизу */
-  align-self: center; /* Центруємо кнопку */
 }
 
 .movie-card button:hover {
@@ -74,17 +40,6 @@
   .movie-card {
     width: 100%;
     margin: 8px;
-    height: auto; /* Дозволяємо картці адаптуватися на мобільних */
-    min-height: 400px; /* Мінімальна висота */
-  }
-
-  .movie-card img {
-    height: 180px; /* Зменшуємо зображення */
-  }
-
-  .description {
-    height: 48px; /* Зменшуємо висоту опису */
-    -webkit-line-clamp: 2; /* Обмежуємо на 2 рядки */
   }
 }
 
@@ -92,16 +47,15 @@
   .movie-card {
     padding: 8px;
   }
+}
 
-  .movie-card img {
-    height: 150px;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  .movie-card h3 {
-    font-size: 1em;
-  }
-
-  .description {
-    font-size: 0.9em;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
