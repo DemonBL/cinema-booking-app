@@ -1,104 +1,107 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'; // Імпортуємо react-toastify
+import 'react-toastify/dist/ReactToastify.css'; // Імпортуємо стилі для сповіщень
 import CinemaHall from '../components/CinemaHall';
-import { saveBooking } from '../services/BookingService';
+import { saveBooking, getMovieById } from '../services/BookingService';
 import './Booking.css';
 
 const Booking = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
-  const [user, setUser] = useState({ name: '', phone: '', email: '' });
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [error, setError] = useState(null);
+  const [userDetails, setUserDetails] = useState({
+    name: '',
+    phone: '',
+    email: '',
+  });
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    // Перевірка, чи id є числом
-    if (!id || isNaN(id)) {
-      setError('Некоректний ID фільму.');
-      return;
-    }
-
-    fetch(`http://localhost:3000/movies/${id}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Failed to fetch movie');
-        }
-        return res.json();
-      })
-      .then((data) => {
-        if (!data) {
-          throw new Error('Фільм не знайдено.');
-        }
-        setMovie(data);
-      })
-      .catch((err) => {
-        console.error('Error fetching movie:', err);
-        setError('Не вдалося завантажити інформацію про фільм.');
-      });
+    const fetchedMovie = getMovieById(id);
+    setMovie(fetchedMovie);
   }, [id]);
 
-  if (error) return <div>{error}</div>;
-  if (!movie) return <div>Завантаження...</div>;
-
   const handleInputChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setUserDetails({ ...userDetails, [name]: value });
   };
 
-  const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validateForm = () => {
+    const newErrors = {};
+    if (!userDetails.name) newErrors.name = 'Ім’я є обов’язковим';
+    if (!userDetails.phone) newErrors.phone = 'Телефон є обов’язковим';
+    if (!userDetails.email) {
+      newErrors.email = 'Email є обов’язковим';
+    } else if (!/\S+@\S+\.\S+/.test(userDetails.email)) {
+      newErrors.email = 'Email має бути у правильному форматі';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
-    if (!user.name || !user.phone || !user.email) {
-      toast.error('Заповніть усі поля!');
-      return;
+  const handleBooking = () => {
+    if (validateForm() && selectedSeats.length > 0) {
+      const booking = {
+        movieId: id,
+        seats: selectedSeats,
+        user: userDetails,
+      };
+      saveBooking(booking);
+      setSelectedSeats([]);
+      setUserDetails({ name: '', phone: '', email: '' });
+      // Показуємо сповіщення про успішне бронювання
+      toast.success('Бронювання успішно виконано!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    } else if (selectedSeats.length === 0) {
+      toast.error('Будь ласка, виберіть хоча б одне місце!', {
+        position: "top-right",
+        autoClose: 3000,
+      });
     }
-    if (!validateEmail(user.email)) {
-      toast.error('Невірний формат email!');
-      return;
-    }
-    if (selectedSeats.length === 0) {
-      toast.error('Виберіть хоча б одне місце!');
-      return;
-    }
-
-    saveBooking(id, selectedSeats, user);
-    toast.success('Бронювання успішне!');
-    setUser({ name: '', phone: '', email: '' });
-    setSelectedSeats([]);
   };
+
+  if (!movie) return <div>Фільм не знайдено</div>;
 
   return (
     <div className="booking">
-      <h2>Бронювання для: {movie.title}</h2>
+      <h1>{movie.title}</h1>
       <CinemaHall setSelectedSeats={setSelectedSeats} />
       <div className="booking-form">
-        <h3>Введіть дані</h3>
+        <h2>Ввести дані</h2>
         <input
           type="text"
           name="name"
-          placeholder="Ім'я"
-          value={user.name}
+          placeholder="Ім’я"
+          value={userDetails.name}
           onChange={handleInputChange}
         />
+        {errors.name && <p className="error">{errors.name}</p>}
         <input
           type="text"
           name="phone"
           placeholder="Телефон"
-          value={user.phone}
+          value={userDetails.phone}
           onChange={handleInputChange}
         />
+        {errors.phone && <p className="error">{errors.phone}</p>}
         <input
           type="email"
           name="email"
           placeholder="Email"
-          value={user.email}
+          value={userDetails.email}
           onChange={handleInputChange}
         />
-        <button onClick={handleSubmit}>Забронювати</button>
+        {errors.email && <p className="error">{errors.email}</p>}
+        <button onClick={handleBooking}>Забронювати</button>
       </div>
+      {/* Додаємо ToastContainer для відображення сповіщень */}
       <ToastContainer />
     </div>
   );
